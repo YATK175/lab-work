@@ -9,3 +9,10 @@ describe('calcTaxiFare — варіант 4', () => {
     },
   );
 });
+
+
+describe('мінімальна вартість', () => {
+  it.each([0, 1, 3])('для %i км вартість не менша за 80 грн', (distanceKm) => {
+    expect(calcTaxiFare(distanceKm)).toBe(80);
+  });
+});
