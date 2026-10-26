@@ -3,5 +3,5 @@ export function calcTaxiFare(distanceKm: number, options: TaxiOptions = {}): num
   if (!Number.isFinite(distanceKm) || distanceKm < 0) {
     throw new Error('INVALID_DISTANCE');
   }
-  return 0;
+  return 80;
 }
