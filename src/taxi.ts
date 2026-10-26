@@ -28,7 +28,10 @@ function roundToCents(amount: number): number {
   return Math.round((amount + Number.EPSILON) * 100) / 100;
 }
 
-export function calcTaxiFare(distanceKm: number, options: TaxiOptions = {}): number {
+export function calcTaxiFare(
+  distanceKm: number,
+  options: TaxiOptions = {},
+): number {
   validateDistance(distanceKm);
   const baseFare = calculateBaseFare(distanceKm);
   const total = applyNightRate(baseFare, options.night);

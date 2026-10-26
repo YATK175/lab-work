@@ -13,7 +13,10 @@ export default [
     rules: {
       'no-constant-condition': 'error',
       'no-unreachable': 'error',
-      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_' },
+      ],
     },
   },
 ];
