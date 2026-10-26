@@ -3,5 +3,6 @@ export function calcTaxiFare(distanceKm: number, options: TaxiOptions = {}): num
   if (!Number.isFinite(distanceKm) || distanceKm < 0) {
     throw new Error('INVALID_DISTANCE');
   }
-  return 80;
+  const calculated = 40 + Math.max(0, distanceKm - 3) * 12;
+  return Math.max(80, calculated);
 }
