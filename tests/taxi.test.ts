@@ -37,6 +37,13 @@ describe('межові значення тарифу', () => {
       expect(calcTaxiFare(distanceKm)).toBe(expected);
     },
   );
+
+  it.each([
+    { distanceKm: 2.99, expected: 80 },
+    { distanceKm: 3.01, expected: 80 },
+  ])('коректно обробляє межу 3 км: $distanceKm', ({ distanceKm, expected }) => {
+    expect(calcTaxiFare(distanceKm)).toBe(expected);
+  });
 });
 
 describe('нічна надбавка', () => {
@@ -50,6 +57,10 @@ describe('нічна надбавка', () => {
       expect(calcTaxiFare(distanceKm, { night: true })).toBe(expected);
     },
   );
+
+  it('застосовує нічну надбавку після мінімального тарифу', () => {
+    expect(calcTaxiFare(0, { night: true })).toBe(100);
+  });
 });
 
 describe('підсумкові правила', () => {
