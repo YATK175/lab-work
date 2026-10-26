@@ -4,6 +4,7 @@ const BOARDING_FEE = 40;
 const INCLUDED_DISTANCE_KM = 3;
 const PRICE_PER_KM = 12;
 const MINIMUM_FARE = 80;
+const NIGHT_MULTIPLIER = 1.25;
 
 function calculateBaseFare(distanceKm: number): number {
   const extraDistance = Math.max(0, distanceKm - INCLUDED_DISTANCE_KM);
@@ -15,5 +16,7 @@ export function calcTaxiFare(distanceKm: number, options: TaxiOptions = {}): num
   if (!Number.isFinite(distanceKm) || distanceKm < 0) {
     throw new Error('INVALID_DISTANCE');
   }
-  return calculateBaseFare(distanceKm);
+  const baseFare = calculateBaseFare(distanceKm);
+  const total = options.night ? baseFare * NIGHT_MULTIPLIER : baseFare;
+  return Math.round((total + Number.EPSILON) * 100) / 100;
 }
