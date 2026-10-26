@@ -16,3 +16,13 @@ describe('мінімальна вартість', () => {
     expect(calcTaxiFare(distanceKm)).toBe(80);
   });
 });
+
+
+describe('посадка та включені кілометри', () => {
+  it('включає перші 3 км у плату за посадку', () => {
+    expect(calcTaxiFare(3)).toBe(80);
+  });
+  it('рахує тариф понад включені 3 км', () => {
+    expect(calcTaxiFare(8)).toBe(100);
+  });
+});
