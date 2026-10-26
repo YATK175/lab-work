@@ -26,3 +26,15 @@ describe('посадка та включені кілометри', () => {
     expect(calcTaxiFare(8)).toBe(100);
   });
 });
+
+
+describe('межові значення тарифу', () => {
+  it.each([
+    { distanceKm: 3, expected: 80 },
+    { distanceKm: 3.5, expected: 80 },
+    { distanceKm: 7, expected: 88 },
+    { distanceKm: 8, expected: 100 },
+  ])('відстань $distanceKm км дає $expected грн', ({ distanceKm, expected }) => {
+    expect(calcTaxiFare(distanceKm)).toBe(expected);
+  });
+});
