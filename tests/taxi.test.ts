@@ -38,3 +38,13 @@ describe('межові значення тарифу', () => {
     expect(calcTaxiFare(distanceKm)).toBe(expected);
   });
 });
+
+describe('нічна надбавка', () => {
+  it.each([
+    { distanceKm: 3, expected: 100 },
+    { distanceKm: 7, expected: 110 },
+    { distanceKm: 8, expected: 125 },
+  ])('нічна поїздка $distanceKm км коштує $expected грн', ({ distanceKm, expected }) => {
+    expect(calcTaxiFare(distanceKm, { night: true })).toBe(expected);
+  });
+});
