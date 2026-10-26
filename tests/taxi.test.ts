@@ -48,3 +48,12 @@ describe('нічна надбавка', () => {
     expect(calcTaxiFare(distanceKm, { night: true })).toBe(expected);
   });
 });
+
+describe('підсумкові правила', () => {
+  it('дозволяє дробову відстань і округлює суму до копійок', () => {
+    expect(calcTaxiFare(7.125)).toBe(89.5);
+  });
+  it('повертає мінімальний тариф з нічною надбавкою', () => {
+    expect(calcTaxiFare(1, { night: true })).toBe(100);
+  });
+});
