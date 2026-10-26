@@ -20,6 +20,10 @@ function calculateBaseFare(distanceKm: number): number {
   return Math.max(MINIMUM_FARE, meteredFare);
 }
 
+function applyNightRate(baseFare: number, night: boolean | undefined): number {
+  return night ? baseFare * NIGHT_MULTIPLIER : baseFare;
+}
+
 function roundToCents(amount: number): number {
   return Math.round((amount + Number.EPSILON) * 100) / 100;
 }
@@ -27,6 +31,6 @@ function roundToCents(amount: number): number {
 export function calcTaxiFare(distanceKm: number, options: TaxiOptions = {}): number {
   validateDistance(distanceKm);
   const baseFare = calculateBaseFare(distanceKm);
-  const total = options.night ? baseFare * NIGHT_MULTIPLIER : baseFare;
+  const total = applyNightRate(baseFare, options.night);
   return roundToCents(total);
 }
